@@ -1,4 +1,4 @@
-package Service;
+package Main;
 import java.io.BufferedReader;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,6 +26,12 @@ public class GetParameter {
         int serviceType = Integer.parseInt(b_reader.readLine());
         return serviceType;
     }
+    public static int getCarType() throws IOException  {
+        //Get CarType
+        System.out.println("Enter car type (1-Truck, 2-Passenger:");
+        int carType = Integer.parseInt(b_reader.readLine());
+        return carType;
+    }
     public static String getVehicleModel() throws IOException  {
         System.out.println("Enter vehicle model:");
         String vehicleModel = b_reader.readLine();
@@ -43,4 +49,5 @@ public class GetParameter {
         int maxLoad = Integer.parseInt(b_reader.readLine());
         return maxLoad;
     }
+
 }

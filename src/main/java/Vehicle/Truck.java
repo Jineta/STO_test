@@ -1,11 +1,18 @@
-package Service;
+package Vehicle;
 
+import Main.HealthStatus;
+import Main.ServiceStatus;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+
+@Getter
+@Setter
 public class Truck extends Vehicle {
-    int maxLoad;
-//    public Truck(String name, int maxLoad){
-//        super(name);
-//        this.maxLoad = maxLoad;
-//    }
+    private int maxLoad;
+
     public static class Builder{
         private Truck newTruck;
         public Builder()

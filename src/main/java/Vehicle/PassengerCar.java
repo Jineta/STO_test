@@ -1,7 +1,14 @@
-package Service;
+package Vehicle;
+
+import Main.HealthStatus;
+import Main.ServiceStatus;
+import lombok.Getter;
+import lombok.Setter;
+
+
 
 public class PassengerCar extends Vehicle {
-    int maxPassengers;
+   public int maxPassengers;
 
     public static class Builder {
         private PassengerCar newPassengerCar;

@@ -1,4 +1,4 @@
-package Service;
+package Main;
 
 public enum HealthStatus{
     BROKEN,

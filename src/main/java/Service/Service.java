@@ -1,13 +1,16 @@
 package Service;
 
-public abstract class Service <T extends Vehicle> implements Repair<T> {
+import Vehicle.Vehicle;
+
+public abstract class Service <T> {
     String serviceName;
 
     public String getServiceName() {
         return serviceName;
     }
-public abstract void checkInVehicle(T vehicle);
-public abstract void checkOutVehicle(T vehicle);
+    public abstract void repair(T t);
+    public abstract void checkInVehicle(T t);
+    public abstract void checkOutVehicle(T t);
 
 @Override
     public String toString(){
