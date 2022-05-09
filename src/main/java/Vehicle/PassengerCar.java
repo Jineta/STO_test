@@ -2,44 +2,17 @@ package Vehicle;
 
 import Main.HealthStatus;
 import Main.ServiceStatus;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 
-
+@Getter
 public class PassengerCar extends Vehicle {
-   public int maxPassengers;
-
-    public static class Builder {
-        private PassengerCar newPassengerCar;
-
-        public Builder() {
-            newPassengerCar = new PassengerCar();
-        }
-
-        public PassengerCar.Builder withHealthStatus(HealthStatus healthStatus) {
-            newPassengerCar.healthStatus = healthStatus;
-            return this;
-        }
-
-        public PassengerCar.Builder withServiceStatus(ServiceStatus serviceStatus) {
-            newPassengerCar.serviceStatus = serviceStatus;
-            return this;
-        }
-
-        public PassengerCar.Builder withModel(String model) {
-            newPassengerCar.model = model;
-            return this;
-        }
-
-        public PassengerCar.Builder withMaxPassengers(int maxPassengers) {
-            newPassengerCar.maxPassengers = maxPassengers;
-            return this;
-        }
-
-        public PassengerCar build() {
-            return newPassengerCar;
-        }
+   private int maxPassengers;
+    @Builder
+    public PassengerCar(HealthStatus healthStatus, ServiceStatus serviceStatus, String model, int maxPassengers) {
+        super(healthStatus, serviceStatus, model);
+        this.maxPassengers = maxPassengers;
     }
 
     @Override

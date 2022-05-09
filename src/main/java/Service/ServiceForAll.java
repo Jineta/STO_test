@@ -3,33 +3,29 @@ package Service;
 import Main.HealthStatus;
 import Main.ServiceStatus;
 import Vehicle.Vehicle;
+import lombok.Builder;
 
 public class ServiceForAll<T extends Vehicle> extends Service<T> {
-    public static class Builder{
-        private ServiceForAll newServiceForAll;
-        public Builder() {newServiceForAll = new ServiceForAll();}
-        public ServiceForAll.Builder withServiceName(String serviceName) {
-            newServiceForAll.serviceName  = serviceName;
-            return this;
-        }
-        public ServiceForAll build() {return newServiceForAll;}
+    @Builder
+    public ServiceForAll(String serviceName) {
+        super(serviceName);
     }
 
     @Override
-    public void checkInVehicle (T t){
-        t.setServiceStatus(ServiceStatus.CHECKED_IN);
-        t.setHealthStatus(HealthStatus.BROKEN);
+    public void checkInVehicle (T vehicle){
+        vehicle.setServiceStatus(ServiceStatus.CHECKED_IN);
+        vehicle.setHealthStatus(HealthStatus.BROKEN);
     }
     @Override
-    public void repair(T t){
-        t.setServiceStatus(ServiceStatus.IN_PROGRESS);
-        t.setHealthStatus(HealthStatus.BROKEN);
-        System.out.println("Vehicle " + t.getModel() + " is fixed in ServiceForAll " + serviceName + " " );
+    public void repair(T vehicle){
+        vehicle.setServiceStatus(ServiceStatus.IN_PROGRESS);
+        vehicle.setHealthStatus(HealthStatus.BROKEN);
+        System.out.println("Vehicle " + vehicle.getModel() + " is fixed in ServiceForAll " + this.getServiceName() + " " );
     }
     @Override
-    public void checkOutVehicle (T t){
-        t.setServiceStatus(ServiceStatus.UNKNOWN);
-        t.setHealthStatus(HealthStatus.HEALTHY);
+    public void checkOutVehicle (T vehicle){
+        vehicle.setServiceStatus(ServiceStatus.UNKNOWN);
+        vehicle.setHealthStatus(HealthStatus.HEALTHY);
     }
 }
 

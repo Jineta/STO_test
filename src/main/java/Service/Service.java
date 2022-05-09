@@ -1,17 +1,12 @@
 package Service;
 
-import Vehicle.Vehicle;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-public abstract class Service <T> {
-    String serviceName;
-
-    public String getServiceName() {
-        return serviceName;
-    }
-    public abstract void repair(T t);
-    public abstract void checkInVehicle(T t);
-    public abstract void checkOutVehicle(T t);
-
+@Getter
+@AllArgsConstructor
+public abstract class Service <T> implements Repair<T>, CheckInVehicle<T>, CheckOutVehicle<T>{
+    private  String serviceName;
 @Override
     public String toString(){
     return "Service name "+ this.serviceName;
