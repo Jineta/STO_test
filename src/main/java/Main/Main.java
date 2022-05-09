@@ -2,55 +2,28 @@ package Main;
 
 import Service.*;
 import Vehicle.*;
-
+import lombok.Builder;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
 
-    public static List<Service> serviceList = new ArrayList<>();
-    //public static Vehicle passengerCar = new PassengerCar();
+public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        Service<Vehicle> tempAllService;
-
-       // serviceList = CreateServiceList.fillServiceList(GetParameter.getAmountService());
         System.out.println();
-        //Print Service
-      //  PrintList.printServiceList(serviceList);
-        System.out.println("Create passenger car:");
-        PassengerCar passengerCar = new PassengerCar.Builder()
-                .withHealthStatus(HealthStatus.UNKNOWN)
-                .withServiceStatus(ServiceStatus.UNKNOWN)
-                .withModel(GetParameter.getVehicleModel())
-                .withMaxPassengers(GetParameter.getMaxPassengers())
-                .build();
-        System.out.println("Create truck:");
-        Truck truck = new Truck.Builder()
-                .withHealthStatus(HealthStatus.UNKNOWN)
-                .withServiceStatus(ServiceStatus.UNKNOWN)
-                .withModel(GetParameter.getVehicleModel())
-                .withMaxLoad(GetParameter.getMaxLoad())
-                .build();
+        //Create cars
+        PassengerCar passengerCar = new PassengerCarFactory().createVehicle();
+        Truck truck = new TruckFactory().createVehicle();
 
-        System.out.println(passengerCar.toString());
-        System.out.println(truck.toString());
+        System.out.println(passengerCar);
+        System.out.println(truck);
+
 // services creation
-        System.out.println("Create service for truck:");
-        Service<Truck> truckService = new ServiceForTruck.Builder()
-                .withServiceName(GetParameter.getServiceName())
-                .build();
-        System.out.println("Create service for passenger car:");
-        Service<PassengerCar> passengerCarService = new ServiceForPassengerCar.Builder()
-                .withServiceName(GetParameter.getServiceName())
-                .build();
-        System.out.println("Create service for all:");
-        Service<Vehicle> serviceForAll = new ServiceForAll.Builder()
-                .withServiceName(GetParameter.getServiceName())
-                .build();
-
+        Service<Truck> truckService =  new ServiceForTruckFactory().createService();
+        Service<PassengerCar> passengerCarService =  new ServiceForPassengerCarFactory().createService();
+        Service<Vehicle> serviceForAll =  new ServiceForAllFactory().createService();
 
         System.out.println("Repair log:");
         truckService.repair(truck);

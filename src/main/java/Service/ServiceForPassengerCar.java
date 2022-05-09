@@ -7,32 +7,25 @@ import lombok.Builder;
 
 
 public class ServiceForPassengerCar<T extends PassengerCar> extends Service<T> {
-
-    public static class Builder{
-        private ServiceForPassengerCar newServiceForPassengerCar;
-        public Builder()
-        {newServiceForPassengerCar = new ServiceForPassengerCar();}
-        public ServiceForPassengerCar.Builder withServiceName(String serviceName) {
-            newServiceForPassengerCar.serviceName  = serviceName;
-            return this;
-        }
-        public ServiceForPassengerCar build() {return newServiceForPassengerCar;}
+    @Builder
+    public ServiceForPassengerCar(String serviceName) {
+        super(serviceName);
     }
 
     @Override
-    public void checkInVehicle (T t) {
-        t.setServiceStatus(ServiceStatus.CHECKED_IN);
-        t.setHealthStatus(HealthStatus.BROKEN);
+    public void checkInVehicle (T vehicle) {
+        vehicle.setServiceStatus(ServiceStatus.CHECKED_IN);
+        vehicle.setHealthStatus(HealthStatus.BROKEN);
     }
     @Override
-    public void repair(T t){
-        t.setServiceStatus(ServiceStatus.IN_PROGRESS);
-        t.setHealthStatus(HealthStatus.BROKEN);
-        System.out.println("Vehicle " + t.getModel() + " is fixed in ServiceForPassengerCar " + serviceName + " " );
+    public void repair(T vehicle){
+        vehicle.setServiceStatus(ServiceStatus.IN_PROGRESS);
+        vehicle.setHealthStatus(HealthStatus.BROKEN);
+        System.out.println("Vehicle " + vehicle.getModel() + " is fixed in ServiceForPassengerCar " + this.getServiceName() + " " );
     }
     @Override
-    public void checkOutVehicle(T t){
-        t.setServiceStatus(ServiceStatus.UNKNOWN);
-        t.setHealthStatus(HealthStatus.HEALTHY);
+    public void checkOutVehicle(T vehicle){
+        vehicle.setServiceStatus(ServiceStatus.UNKNOWN);
+        vehicle.setHealthStatus(HealthStatus.HEALTHY);
     }
 }
